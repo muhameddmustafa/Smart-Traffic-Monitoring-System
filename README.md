@@ -2,33 +2,39 @@
 
 An IoT-based Smart Traffic Monitoring System designed to monitor vehicle movement, capture vehicle images, and provide real-time traffic information through a web-based dashboard.
 
-The system uses ESP32 microcontrollers, ESP32-CAM, and IR sensors to create an integrated traffic monitoring solution.
+The system integrates ESP32 microcontrollers, ESP32-CAM modules, and IR sensors to create a connected traffic monitoring solution.
 
-## →  Project Overview
+
+
+## → Project Overview
 
 This project combines embedded systems, wireless communication, camera-based monitoring, and web technologies to develop a smart traffic monitoring platform.
 
-The system consists of a main ESP32 controller and ESP32-CAM modules that work together to detect vehicles, capture images, and communicate monitoring data to the dashboard.
+The system consists of a main ESP32 controller and ESP32-CAM modules that work together to detect vehicles, capture images, and communicate monitoring data to a web-based dashboard.
 
-## →  Key Features
+## → Key Features
 
 - Vehicle detection using IR sensors.
 - Vehicle image capturing using ESP32-CAM.
 - Wireless communication between system modules.
 - Real-time traffic monitoring dashboard.
-- Web-based monitoring interface.
-- Centralized traffic monitoring and data visualization.
+- Traffic light status monitoring.
+- Vehicle violation counters and records.
+- Captured image viewing and management.
+- Camera connection status monitoring.
 
-## →  Hardware Components
+## → Hardware Components
 
 | Component | Purpose |
 |---|---|
 | ESP32 / ESP32-S3 | Main system controller |
 | ESP32-CAM | Vehicle image capturing |
 | IR Sensors | Vehicle detection |
+| Traffic Light LEDs | Traffic signal indication |
 | Wi-Fi | Wireless connectivity |
+| Power Supply | System operation |
 
-## →  System Architecture
+## → System Architecture
 
 The system is divided into two main hardware modules:
 
@@ -36,22 +42,26 @@ The system is divided into two main hardware modules:
 
 - Handles the main traffic monitoring logic.
 - Processes sensor readings.
-- Manages communication with other modules.
-- Provides data to the monitoring dashboard.
+- Manages traffic light control.
+- Handles communication with other modules.
+- Hosts the web-based monitoring dashboard.
 
 ### 2. Camera Module (ESP32-CAM)
 
 - Captures images of detected vehicles.
 - Connects to the wireless network.
 - Provides camera access through its web interface.
+- Communicates camera information with the main controller.
 
-## →  Software & Technologies
+## → Software & Technologies
 
 - Arduino IDE
 - Embedded C/C++
 - ESP32 Development Framework
 - Wi-Fi Communication
-- HTML / CSS / JavaScript (Dashboard, if applicable)
+- HTML
+- CSS
+- JavaScript
 
 ## → Repository Structure
 
@@ -60,20 +70,26 @@ Smart-Traffic-Monitoring-System/
 │
 ├── Firmware/
 │   ├── ESP32/
-│   │   └── Main_Controller.ino
+│   │   ├── README.md
+│   │   └── Smart_Traffic_Monitoring_System_ESP32S3_Code.ino
 │   │
 │   └── ESP32-CAM/
-│       └── Camera_Module.ino
+│       ├── README.md
+│       └── Smart_Traffic_Monitoring_System_Camera_Module_Code.ino
 │
 ├── Dashboard/
+│   ├── README.md
+│   └── Dashboard.html
 │
 ├── Hardware/
-│   ├── Circuit_Diagrams/
+│   ├── Circuit Diagrams/
+│   │   └── README.md
+│   │
 │   └── Components/
+│       └── README.md
 │
 ├── Images/
-│
-├── Videos/
+│   └── README.md
 │
 ├── README.md
 ├── LICENSE
@@ -86,12 +102,28 @@ Smart-Traffic-Monitoring-System/
 2. Configure ESP32 board support.
 3. Install the required libraries.
 4. Open the corresponding firmware file.
-5. Configure Wi-Fi credentials.
+5. Configure Wi-Fi credentials for the modules.
 6. Upload the firmware to the ESP32 and ESP32-CAM modules.
 7. Connect all hardware components.
-8. Access the monitoring dashboard through the assigned IP address.
+8. Connect to the same Wi-Fi network.
+9. Access the monitoring dashboard using the main ESP32's assigned IP address.
 
-## Developers
-Muhamed Mustafa, Muhamed Taha, Muhamed Saeed, Tasneem Sabry
+## → Project Documentation
 
-Electrical, Electronics & Communications Engineering Students @AAST 
+- **Firmware:** Contains the source code for the main ESP32 controller and ESP32-CAM.
+- **Dashboard:** Contains the HTML dashboard interface.
+- **Hardware:** Contains circuit diagrams and hardware component documentation.
+- **Images:** Contains project photos and visual documentation.
+
+## → Developers
+
+- Muhamed Mustafa
+- Muhamed Taha
+- Muhamed Saeed
+- Tasneem Sabry
+
+Electrical, Electronics & Communications Engineering Students @ AAST
+
+---
+
+*Developed as an Embedded Systems and IoT Engineering Project.*
