@@ -1,48 +1,22 @@
-# Hardware Formal Report
+# Schematic Diagram
 
-This folder contains the formal hardware documentation of the Smart Traffic Monitoring System, including the hardware design, component specifications, and Bill of Materials (BOM).
+This directory contains the circuit schematic diagrams of the **Smart Traffic Monitoring System**.
 
-## → Report Contents
+The schematics illustrate the electrical connections between the ESP32 microcontroller and the various hardware components used in the project.
 
-The formal report covers the following sections:
+## Contents
 
-- Project Hardware Overview
-- System Architecture
-- Hardware Design & Implementation
-- Circuit Diagrams & Wiring Connections
-- Component Specifications
-- Pin Configuration
-- Power Requirements
-- Hardware Integration
-- Testing & Verification
+- **ESP32 Connections:** Main microcontroller pin assignments and connections.
+- **Traffic Light Circuit:** LED traffic signal connections.
+- **7-Segment Display:** Display wiring and control connections.
+- **IR Sensors:** Vehicle detection sensor connections.
 
-## → Bill of Materials (BOM)
+## Purpose
 
-The Bill of Materials provides a structured list of the hardware components used in the project, including:
+These diagrams serve as a hardware reference for understanding the system architecture, component interconnections, and implementation of the complete traffic monitoring system.
 
-- Component Name
-- Description
-- Quantity
-- Technical Specifications
-- Component References
+## Project
 
-## → Technical Documentation
+**Smart Traffic Monitoring System**
 
-This section includes supporting technical references such as:
-
-- Component Datasheets
-- Technical Specifications
-- Pinout References
-- Hardware Configuration Details
-
-## → Files
-
-| File | Description |
-|---|---|
-| `Formal_Report.pdf` | Complete hardware documentation |
-| `Bill_of_Materials.xlsx` | Hardware components list |
-| `Datasheets/` | Component datasheets and technical references |
-
----
-
-*Part of the Smart Traffic Monitoring System project documentation.*
+An IoT-based traffic monitoring solution designed to detect vehicle movement, monitor traffic signals, and identify red-light violations using an ESP32-based platform.
