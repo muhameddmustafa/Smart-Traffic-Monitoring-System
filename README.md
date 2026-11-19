@@ -150,14 +150,6 @@ This project was developed under the supervision of:
 - Tasneem Sabry
 
 Electrical, Electronics & Communications Engineering Students @ AAST
-## → Developers
-
-- Muhamed Mustafa
-- Muhamed Taha
-- Muhamed Saeed
-- Tasneem Sabry
-
-Electrical, Electronics & Communications Engineering Students @ AAST
 
 ---
 
