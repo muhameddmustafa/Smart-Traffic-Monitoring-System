@@ -134,7 +134,22 @@ Smart-Traffic-Monitoring-System/
 - **Dashboard:** Contains the HTML dashboard interface.
 - **Hardware:** Contains circuit diagrams and hardware component documentation.
 - **Images:** Contains project photos and visual documentation.
+- 
+## → Project Supervision
 
+This project was developed under the supervision of:
+
+- **Project Supervisor:** Dr. Khaled Fouda
+- **Teaching Assistant:** George Tawadrous
+
+## → Developers
+
+- Muhamed Mustafa
+- Muhamed Taha
+- Muhamed Saeed
+- Tasneem Sabry
+
+Electrical, Electronics & Communications Engineering Students @ AAST
 ## → Developers
 
 - Muhamed Mustafa
