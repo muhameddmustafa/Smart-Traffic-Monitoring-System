@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart Traffic System</title>
+
+<style>
+:root {
+  --bg: #0b1120;
+  --panel: #151f32;
+  --panel2: #1c2940;
+  --text: #edf2fa;
+  --muted: #8fa0b8;
+  --green: #22c55e;
+  --red: #ef4444;
+  --yellow: #facc15;
+  --blue: #38bdf8;
+  --border: #2a3850;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 22px;
+}
+
+header {
+  text-align: center;
+  padding: 24px 12px;
+  background: linear-gradient(135deg,#16243a,#101a2b);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin: 0 0 14px;
+  letter-spacing: 2px;
+  font-size: clamp(23px,4vw,34px);
+}
+
+.designed {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+
+.team {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.team span {
+  font-size: 13px;
+  font-weight: bold;
+  color: #dce8f8;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.info-item {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 13px 18px;
+  border-radius: 12px;
+  flex: 1;
+  min-width: 180px;
+}
+
+.label {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.value {
+  font-weight: bold;
+  margin-top: 7px;
+}
+
+.lanes {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 18px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.card h2 {
+  margin: 0 0 16px;
+  font-size: 19px;
+}
+
+.lights {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.light {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #293449;
+  border: 3px solid #3b475c;
+}
+
+.light.red.on {
+  background: var(--red);
+  box-shadow: 0 0 18px var(--red);
+}
+
+.light.yellow.on {
+  background: var(--yellow);
+  box-shadow: 0 0 18px var(--yellow);
+}
+
+.light.green.on {
+  background: var(--green);
+  box-shadow: 0 0 18px var(--green);
+}
+
+.status {
+  text-align: center;
+  font-weight: bold;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.countdown {
+  text-align: center;
+  font-size: 55px;
+  font-weight: bold;
+  margin: 12px 0;
+  color: var(--blue);
+  font-variant-numeric: tabular-nums;
+}
+
+.unit {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.number {
+  font-size: 38px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.section {
+  margin-top: 20px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+button {
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+}
+
+.delete {
+  background: #b91c1c;
+  padding: 7px 10px;
+}
+
+.clear {
+  background: #dc2626;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 530px;
+}
+
+th,td {
+  padding: 13px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  font-size: 13px;
+}
+
+th {
+  color: var(--muted);
+}
+
+.laneA {
+  color: #38bdf8;
+  font-weight: bold;
+}
+
+.laneB {
+  color: #c084fc;
+  font-weight: bold;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 25px;
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 24px;
+  font-size: 12px;
+}
+
+.photo-btn {
+  background: #2563eb;
+  padding: 7px 10px;
+}
+
+.car {
+  font-weight: bold;
+  color: var(--yellow);
+}
+
+.capture {
+  display: grid;
+  grid-template-columns: minmax(0,2fr) minmax(0,1fr);
+  gap: 18px;
+  align-items: center;
+}
+
+.capture img {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #000;
+  cursor: zoom-in;
+}
+
+.capture .none {
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  color: var(--muted);
+}
+
+.big {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 6px 0 14px;
+}
+
+.cam a {
+  color: var(--blue);
+}
+
+#viewer {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.88);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 10;
+  padding: 16px;
+}
+
+#viewer img {
+  max-width: 100%;
+  max-height: 82vh;
+  border-radius: 10px;
+}
+
+@media(max-width:650px) {
+  .capture {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media(max-width:650px) {
+  .lanes, .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    padding: 12px;
+  }
+
+  .team {
+    gap: 12px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+  <h1>SMART TRAFFIC SYSTEM</h1>
+  <div class="designed">DESIGNED BY</div>
+  <div class="team">
+    <span>Muhamed Mustafa</span>
+    <span>Mohamed Saeed</span>
+    <span>Mohamed Taha</span>
+    <span>Tasnim Sabry</span>
+  </div>
+</header>
+
+<div class="info">
+  <div class="info-item">
+    <div class="label">SYSTEM CONNECTION</div>
+    <div class="value" id="wifi">CONNECTING...</div>
+  </div>
+
+  <div class="info-item">
+    <div class="label">ESP32 IP ADDRESS</div>
+    <div class="value" id="ip">--</div>
+  </div>
+
+  <div class="info-item">
+    <div class="label">DATE & TIME</div>
+    <div class="value" id="datetime">--</div>
+  </div>
+
+  <div class="info-item cam">
+    <div class="label">VIOLATION CAMERA</div>
+    <div class="value" id="cam">--</div>
+  </div>
+</div>
+
+<div class="lanes">
+
+  <!-- Lane B is first so it appears on the LEFT on desktop -->
+  <div class="card">
+    <h2>LANE B</h2>
+    <div class="lights">
+      <div class="light red" id="br"></div>
+      <div class="light yellow" id="by"></div>
+      <div class="light green" id="bg"></div>
+    </div>
+    <div class="status" id="bstatus">--</div>
+    <div class="countdown" id="btime">--</div>
+    <div class="unit">SECONDS REMAINING</div>
+  </div>
+
+  <!-- Lane A is second so it appears on the RIGHT on desktop -->
+  <div class="card">
+    <h2>LANE A</h2>
+    <div class="lights">
+      <div class="light red" id="ar"></div>
+      <div class="light yellow" id="ay"></div>
+      <div class="light green" id="ag"></div>
+    </div>
+    <div class="status" id="astatus">--</div>
+    <div class="countdown" id="atime">--</div>
+    <div class="unit">SECONDS REMAINING</div>
+  </div>
+
+</div>
+
+<div class="stats">
+  <!-- Lane B left -->
+  <div class="card">
+    <div class="label">LANE B VIOLATIONS</div>
+    <div class="number" id="countB">0</div>
+  </div>
+
+  <!-- Lane A right -->
+  <div class="card">
+    <div class="label">LANE A VIOLATIONS</div>
+    <div class="number" id="countA">0</div>
+  </div>
+</div>
+
+<div class="card section">
+  <div class="section-header">
+    <h2>LATEST CAPTURE</h2>
+  </div>
+  <div class="capture">
+    <div id="lastPhoto"><div class="none">No photo yet</div></div>
+    <div>
+      <div class="label">CAR (QR CODE)</div>
+      <div class="big" id="lastCar">--</div>
+      <div class="label">LANE</div>
+      <div class="big" id="lastLane">--</div>
+      <div class="label">VIOLATION / TIME</div>
+      <div class="value" id="lastInfo">--</div>
+    </div>
+  </div>
+</div>
+
+<div class="card section">
+  <div class="section-header">
+    <h2>VIOLATION RECORDS</h2>
+    <button class="clear" onclick="clearAll()">CLEAR ALL</button>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>LANE</th>
+          <th>CAR</th>
+          <th>DATE</th>
+          <th>TIME</th>
+          <th>PHOTO</th>
+          <th>ACTION</th>
+        </tr>
+      </thead>
+      <tbody id="logs">
+        <tr><td colspan="7" class="empty">Loading records...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div id="viewer" onclick="this.style.display='none'">
+  <img id="viewerImg" alt="Violation photo">
+  <div id="viewerText" class="status"></div>
+</div>
+
+<footer>
+  SMART TRAFFIC SYSTEM | ESP32-S3
+</footer>
+
+</div>
+
+<script>
+let previousLogs = '';
+
+function photoSrc(v) {
+  if(v.photo) return '/photo?id=' + v.id + '&k=' + encodeURIComponent(v.car || '');
+  if(v.url) return v.url;
+  return '';
+}
+
+function showPhoto(v) {
+  const src = photoSrc(v);
+  if(!src) return;
+  document.getElementById('viewerImg').src = src;
+  document.getElementById('viewerText').textContent =
+    '#' + v.id + '  |  LANE ' + v.lane + '  |  ' + (v.car || 'NOT READ') +
+    '  |  ' + v.date + ' ' + v.time + '  (tap to close)';
+  document.getElementById('viewer').style.display = 'flex';
+}
+
+function updateLatest(logs) {
+  const box = document.getElementById('lastPhoto');
+  if(logs.length === 0) {
+    box.innerHTML = '<div class="none">No photo yet</div>';
+    document.getElementById('lastCar').textContent = '--';
+    document.getElementById('lastLane').textContent = '--';
+    document.getElementById('lastInfo').textContent = '--';
+    return;
+  }
+
+  const v = logs[logs.length - 1];
+  const src = photoSrc(v);
+  box.innerHTML = '';
+
+  if(src) {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = 'Violation photo';
+    img.onclick = () => showPhoto(v);
+    box.appendChild(img);
+  } else {
+    const none = document.createElement('div');
+    none.className = 'none';
+    none.textContent = 'Waiting for camera photo...';
+    box.appendChild(none);
+  }
+
+  document.getElementById('lastCar').textContent = v.car || 'WAITING...';
+  document.getElementById('lastLane').textContent = 'LANE ' + v.lane;
+  document.getElementById('lastInfo').textContent =
+    '#' + v.id + '  ' + v.date + ' ' + v.time;
+}
+
+async function updateStatus() {
+  try {
+    const r = await fetch('/api/status');
+    const d = await r.json();
+
+    const cam = document.getElementById('cam');
+    if(d.camOnline) {
+      cam.innerHTML = 'ONLINE - <a target="_blank" href="http://' +
+        d.camIP + '/">' + d.camIP + '</a>';
+    } else {
+      cam.textContent = 'OFFLINE';
+    }
+
+    document.getElementById('wifi').textContent =
+      d.wifi ? 'CONNECTED' : 'DISCONNECTED';
+
+    document.getElementById('ip').textContent = d.ip;
+    document.getElementById('datetime').textContent = d.datetime;
+
+    document.getElementById('atime').textContent = d.timeA;
+    document.getElementById('btime').textContent = d.timeB;
+
+    document.getElementById('astatus').textContent = d.statusA;
+    document.getElementById('bstatus').textContent = d.statusB;
+
+    ['ar','ay','ag','br','by','bg'].forEach(id => {
+      document.getElementById(id).classList.remove('on');
+    });
+
+    if(d.redA) document.getElementById('ar').classList.add('on');
+    if(d.yellowA) document.getElementById('ay').classList.add('on');
+    if(d.greenA) document.getElementById('ag').classList.add('on');
+
+    if(d.redB) document.getElementById('br').classList.add('on');
+    if(d.yellowB) document.getElementById('by').classList.add('on');
+    if(d.greenB) document.getElementById('bg').classList.add('on');
+
+  } catch(e) {
+    document.getElementById('wifi').textContent = 'SERVER OFFLINE';
+  }
+}
+
+async function updateLogs() {
+  try {
+    const r = await fetch('/api/logs');
+    const d = await r.json();
+
+    document.getElementById('countA').textContent = d.countA;
+    document.getElementById('countB').textContent = d.countB;
+
+    // Redraw when anything changes (new record, car read, photo arrived).
+    const signature = JSON.stringify(d.logs);
+
+    if(previousLogs !== signature) {
+      previousLogs = signature;
+
+      updateLatest(d.logs);
+
+      const tbody = document.getElementById('logs');
+      tbody.innerHTML = '';
+
+      if(d.logs.length === 0) {
+        tbody.innerHTML =
+          '<tr><td colspan="7" class="empty">No violations recorded</td></tr>';
+        return;
+      }
+
+      d.logs.slice().reverse().forEach(v => {
+        const tr = document.createElement('tr');
+
+        const values = [
+          '#' + v.id,
+          'LANE ' + v.lane,
+          v.car || '...',
+          v.date,
+          v.time
+        ];
+
+        values.forEach((value, index) => {
+          const td = document.createElement('td');
+          td.textContent = value;
+
+          if(index === 1) {
+            td.className = v.lane === 'A' ? 'laneA' : 'laneB';
+          }
+          if(index === 2) {
+            td.className = 'car';
+          }
+
+          tr.appendChild(td);
+        });
+
+        const photoCell = document.createElement('td');
+        if(photoSrc(v)) {
+          const pbtn = document.createElement('button');
+          pbtn.className = 'photo-btn';
+          pbtn.textContent = 'VIEW';
+          pbtn.onclick = () => showPhoto(v);
+          photoCell.appendChild(pbtn);
+        } else {
+          photoCell.textContent = '--';
+        }
+        tr.appendChild(photoCell);
+
+        const action = document.createElement('td');
+        const btn = document.createElement('button');
+        btn.className = 'delete';
+        btn.textContent = 'DELETE';
+        btn.onclick = () => deleteLog(v.id);
+
+        action.appendChild(btn);
+        tr.appendChild(action);
+        tbody.appendChild(tr);
+      });
+    }
+  } catch(e) {
+    console.error(e);
+  }
+}
+
+async function deleteLog(id) {
+  if(!confirm('Delete violation #' + id + '?')) return;
+
+  const r = await fetch('/api/delete?id=' + id, {
+    method: 'POST'
+  });
+
+  if(r.ok) {
+    previousLogs = '';
+    updateLogs();
+  } else {
+    alert('Delete failed');
+  }
+}
+
+async function clearAll() {
+  if(!confirm('Are you sure you want to delete ALL violation records?')) return;
+  if(!confirm('This action cannot be undone. Continue?')) return;
+
+  const r = await fetch('/api/clear', {
+    method: 'POST'
+  });
+
+  if(r.ok) {
+    previousLogs = '';
+    updateLogs();
+  } else {
+    alert('Clear failed');
+  }
+}
+
+updateStatus();
+updateLogs();
+
+setInterval(updateStatus, 500);
+setInterval(updateLogs, 2000);
+</script>
+
+</body>
+</html>
