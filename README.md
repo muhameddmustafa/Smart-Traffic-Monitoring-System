@@ -68,32 +68,52 @@ The system is divided into two main hardware modules:
 ```text
 Smart-Traffic-Monitoring-System/
 │
+├── Dashboard/
+│   ├── Dashboard.html
+│   └── README.md
+│
+├── Datasheets/
+│   ├── 4_Digit_Display_Datasheet.pdf
+│   ├── Esp32S3_datasheet_en.pdf
+│   ├── Esp32_Camera_Datasheet.pdf
+│   ├── IR_Sensor_Datasheet.pdf
+│   ├── Traffic_Module_Datasheet.pdf
+│   └── Readme.md
+│
+├── Documents/
+│   ├── Bill_Of_Materials.xlsx
+│   ├── Manual_Report.pdf
+│   └── Readme.md
+│
 ├── Firmware/
 │   ├── ESP32/
 │   │   ├── README.md
-│   │   └── Smart_Traffic_Monitoring_System_ESP32S3_Code.ino
+│   │   └── [ESP32 Firmware Code]
 │   │
 │   └── ESP32-CAM/
 │       ├── README.md
 │       └── Smart_Traffic_Monitoring_System_Camera_Module_Code.ino
 │
-├── Dashboard/
-│   ├── README.md
-│   └── Dashboard.html
-│
-├── Hardware/
-│   ├── Circuit Diagrams/
-│   │   └── README.md
-│   │
-│   └── Components/
-│       └── README.md
-│
 ├── Images/
+│   ├── Breadboard_Prototyping.jpg
+│   ├── Dashboard.jpg
+│   ├── Final_Project.jpg
+│   ├── Final_Project_With_Camera.jpg
+│   ├── Hardware_Implementation.jpg
+│   ├── Lane_A_Violation_Dashboard.jpg
+│   ├── Lane_B_Violation_Dashboard.jpg
+│   ├── QR_Detections_Camera.jpg
+│   ├── Terminal_Violation_Alerts.PNG
+│   ├── Violation_Records_Dashboard.jpg
 │   └── README.md
 │
-├── README.md
+├── Software Diagram/
+│   ├── Schematic_Diagram.png
+│   └── README.md
+│
 ├── LICENSE
-└── .gitignore
+├── .gitignore
+└── README.md
 ```
 
 ## → Installation & Setup
